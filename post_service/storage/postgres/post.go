@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	pb "github.com/exam/post_service/genproto/post"
+	pb "github.com/Exam/post_service/genproto/post"
 
 	"github.com/jmoiron/sqlx"
 )

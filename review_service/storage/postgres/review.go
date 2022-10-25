@@ -3,7 +3,7 @@ package postgres
 import (
 	"log"
 
-	pb "github.com/exam/review_service/genproto/review"
+	pb "github.com/Exam/review_service/genproto/review"
 
 	"github.com/jmoiron/sqlx"
 )

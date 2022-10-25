@@ -3,11 +3,11 @@ package service
 import (
 	"context"
 
-	pb "github.com/exam/customer_service/genproto/customer"
-	pbp "github.com/exam/customer_service/genproto/post"
-	l "github.com/exam/customer_service/pkg/logger"
-	grpcClient "github.com/exam/customer_service/service/grpc_client"
-	"github.com/exam/customer_service/storage"
+	pb "github.com/Exam/customer_service/genproto/customer"
+	pbp "github.com/Exam/customer_service/genproto/post"
+	l "github.com/Exam/customer_service/pkg/logger"
+	grpcClient "github.com/Exam/customer_service/service/grpc_client"
+	"github.com/Exam/customer_service/storage"
 
 	"github.com/jmoiron/sqlx"
 	"google.golang.org/grpc/codes"

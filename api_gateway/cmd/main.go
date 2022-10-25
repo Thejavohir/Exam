@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/exam/api_gateway/api"
-	"github.com/exam/api_gateway/config"
-	"github.com/exam/api_gateway/pkg/logger"
-	"github.com/exam/api_gateway/services"
+	"github.com/Exam/api_gateway/api"
+	"github.com/Exam/api_gateway/config"
+	"github.com/Exam/api_gateway/pkg/logger"
+	"github.com/Exam/api_gateway/services"
 )
 
 func main() {

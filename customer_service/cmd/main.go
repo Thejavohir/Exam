@@ -3,13 +3,13 @@ package main
 import (
 	"net"
 
-	pb "github.com/exam/customer_service/genproto/customer"
+	pb "github.com/Exam/customer_service/genproto/customer"
 
-	"github.com/exam/customer_service/config"
-	"github.com/exam/customer_service/pkg/db"
-	"github.com/exam/customer_service/pkg/logger"
-	"github.com/exam/customer_service/service"
-	grpcClient "github.com/exam/customer_service/service/grpc_client"
+	"github.com/Exam/customer_service/config"
+	"github.com/Exam/customer_service/pkg/db"
+	"github.com/Exam/customer_service/pkg/logger"
+	"github.com/Exam/customer_service/service"
+	grpcClient "github.com/Exam/customer_service/service/grpc_client"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

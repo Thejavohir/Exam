@@ -3,8 +3,8 @@ package grpcClient
 import (
 	"fmt"
 
-	"github.com/exam/review_service/config"
-	pbp "github.com/exam/review_service/genproto/post"
+	"github.com/Exam/review_service/config"
+	pbp "github.com/Exam/review_service/genproto/post"
 	"google.golang.org/grpc"
 )
 

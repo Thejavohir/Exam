@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/exam/api_gateway/api/handlers/models"
-	pbp "github.com/exam/api_gateway/genproto/review"
-	l "github.com/exam/api_gateway/pkg/logger"
+	"github.com/Exam/api_gateway/api/handlers/models"
+	pbp "github.com/Exam/api_gateway/genproto/review"
+	l "github.com/Exam/api_gateway/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/protobuf/encoding/protojson"
 )

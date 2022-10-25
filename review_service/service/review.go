@@ -3,10 +3,10 @@ package service
 import (
 	"context"
 
-	pb "github.com/exam/review_service/genproto/review"
-	l "github.com/exam/review_service/pkg/logger"
-	grpcClient "github.com/exam/review_service/service/grpc_client"
-	"github.com/exam/review_service/storage"
+	pb "github.com/Exam/review_service/genproto/review"
+	l "github.com/Exam/review_service/pkg/logger"
+	grpcClient "github.com/Exam/review_service/service/grpc_client"
+	"github.com/Exam/review_service/storage"
 
 	"github.com/jmoiron/sqlx"
 	"google.golang.org/grpc/codes"

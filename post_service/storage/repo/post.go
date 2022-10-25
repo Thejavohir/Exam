@@ -1,6 +1,6 @@
 package repo
 
-import pb "github.com/exam/post_service/genproto/post"
+import pb "github.com/Exam/post_service/genproto/post"
 
 //CustomerStorageI ...
 type PostStorageI interface {

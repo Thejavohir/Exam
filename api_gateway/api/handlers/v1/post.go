@@ -6,10 +6,10 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/exam/api_gateway/api/handlers/models"
-	"github.com/exam/api_gateway/genproto/post"
-	pbp "github.com/exam/api_gateway/genproto/post"
-	l "github.com/exam/api_gateway/pkg/logger"
+	"github.com/Exam/api_gateway/api/handlers/models"
+	"github.com/Exam/api_gateway/genproto/post"
+	pbp "github.com/Exam/api_gateway/genproto/post"
+	l "github.com/Exam/api_gateway/pkg/logger"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/protobuf/encoding/protojson"
 )

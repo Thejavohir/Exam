@@ -1,6 +1,6 @@
 package repo
 
-import pb "github.com/exam/review_service/genproto/review"
+import pb "github.com/Exam/review_service/genproto/review"
 
 //CustomerStorageI ...
 type ReviewStorageI interface {

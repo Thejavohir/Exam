@@ -7,10 +7,10 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/resolver"
 
-	"github.com/exam/api_gateway/config"
-	pb "github.com/exam/api_gateway/genproto/customer"
-	pbp "github.com/exam/api_gateway/genproto/post"
-	pbr "github.com/exam/api_gateway/genproto/review"
+	"github.com/Exam/api_gateway/config"
+	pb "github.com/Exam/api_gateway/genproto/customer"
+	pbp "github.com/Exam/api_gateway/genproto/post"
+	pbr "github.com/Exam/api_gateway/genproto/review"
 )
 
 type IServiceManager interface {

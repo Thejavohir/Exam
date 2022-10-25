@@ -1,11 +1,11 @@
 package api
 
 import (
-	_ "github.com/exam/api_gateway/api/docs"
-	v1 "github.com/exam/api_gateway/api/handlers/v1"
-	"github.com/exam/api_gateway/config"
-	"github.com/exam/api_gateway/pkg/logger"
-	"github.com/exam/api_gateway/services"
+	_ "github.com/Exam/api_gateway/api/docs"
+	v1 "github.com/Exam/api_gateway/api/handlers/v1"
+	"github.com/Exam/api_gateway/config"
+	"github.com/Exam/api_gateway/pkg/logger"
+	"github.com/Exam/api_gateway/services"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
