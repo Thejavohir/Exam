@@ -27,7 +27,7 @@ func NewReviewService(db *sqlx.DB, log l.Logger, client grpcClient.GrpcClientI) 
 	}
 }
 
-func (s *ReviewService) CreateReview(ctx context.Context, req *pb.Review) (*pb.Review, error) {
+func (s *ReviewService) CreateReview(ctx context.Context, req *pb.ReviewReq) (*pb.Review, error) {
 	review, err := s.storage.Review().CreateReview(req)
 	if err != nil {
 		s.logger.Error("error insert", l.Any("error insert review", err))

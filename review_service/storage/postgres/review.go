@@ -17,7 +17,7 @@ func NewReviewRepo(db *sqlx.DB) *reviewRepo {
 	return &reviewRepo{db: db}
 }
 
-func (r *reviewRepo) CreateReview(rvw *pb.Review) (*pb.Review, error) {
+func (r *reviewRepo) CreateReview(rvw *pb.ReviewReq) (*pb.Review, error) {
 	revResp := pb.Review{}
 	err := r.db.QueryRow(`insert into review(
 		name, 
