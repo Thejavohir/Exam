@@ -89,6 +89,10 @@ definitions:
         type: array
       name:
         type: string
+      reviews:
+        items:
+          $ref: '#/definitions/post.Review'
+        type: array
     type: object
   post.ListPostsResp:
     properties:
@@ -153,10 +157,6 @@ definitions:
         type: array
       name:
         type: string
-      reviews:
-        items:
-          $ref: '#/definitions/post.Review'
-        type: array
     type: object
   post.Review:
     properties:
@@ -177,6 +177,17 @@ definitions:
         type: string
       id:
         type: integer
+      name:
+        type: string
+      post_id:
+        type: integer
+      review:
+        type: integer
+    type: object
+  review.ReviewReq:
+    properties:
+      description:
+        type: string
       name:
         type: string
       post_id:
@@ -412,7 +423,7 @@ paths:
         name: review
         required: true
         schema:
-          $ref: '#/definitions/review.Review'
+          $ref: '#/definitions/review.ReviewReq'
       produces:
       - application/json
       responses:

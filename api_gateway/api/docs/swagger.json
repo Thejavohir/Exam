@@ -352,7 +352,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/review.Review"
+                            "$ref": "#/definitions/review.ReviewReq"
                         }
                     }
                 ],
@@ -647,6 +647,12 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "reviews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/post.Review"
+                    }
                 }
             }
         },
@@ -746,12 +752,6 @@
                 },
                 "name": {
                     "type": "string"
-                },
-                "reviews": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/post.Review"
-                    }
                 }
             }
         },
@@ -783,6 +783,23 @@
                 },
                 "id": {
                     "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "post_id": {
+                    "type": "integer"
+                },
+                "review": {
+                    "type": "integer"
+                }
+            }
+        },
+        "review.ReviewReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"

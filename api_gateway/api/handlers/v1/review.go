@@ -19,13 +19,13 @@ import (
 // @Tags Review
 // @Accept json
 // @Produce json
-// @Param review body review.Review true "review"
+// @Param review body review.ReviewReq true "review"
 // @Success 201 {object} review.Review
 // @Failure 400 "ErrorResponse"
 // @Router /v1/review [post]
 func (h *handlerV1) CreateReview(c *gin.Context) {
 	var (
-		reviewBody  review.Review
+		reviewBody  review.ReviewReq
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -121,7 +121,7 @@ func (h *handlerV1) UpdateReview(c *gin.Context) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
-	response, err := h.serviceManager.ReviewService().CreateReview(ctx, &reviewBody)
+	response, err := h.serviceManager.ReviewService().UpdateReview(ctx, &reviewBody)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

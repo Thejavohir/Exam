@@ -364,7 +364,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/review.Review"
+                            "$ref": "#/definitions/review.ReviewReq"
                         }
                     }
                 ],
@@ -659,6 +659,12 @@ const docTemplate = `{
                 },
                 "name": {
                     "type": "string"
+                },
+                "reviews": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/post.Review"
+                    }
                 }
             }
         },
@@ -758,12 +764,6 @@ const docTemplate = `{
                 },
                 "name": {
                     "type": "string"
-                },
-                "reviews": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/post.Review"
-                    }
                 }
             }
         },
@@ -795,6 +795,23 @@ const docTemplate = `{
                 },
                 "id": {
                     "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "post_id": {
+                    "type": "integer"
+                },
+                "review": {
+                    "type": "integer"
+                }
+            }
+        },
+        "review.ReviewReq": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
                 },
                 "name": {
                     "type": "string"
