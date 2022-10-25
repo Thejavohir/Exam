@@ -7,3 +7,6 @@
 [submodule "api_gateway/protos"]
 	path = api_gateway/protos
 	url = git@github.com:Thejavohir/protos.git
+[submodule "customer_service/protos"]
+	path = customer_service/protos
+	url = git@github.com:Thejavohir/protos.git
