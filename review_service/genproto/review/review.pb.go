@@ -65,6 +65,77 @@ func (m *Empty) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Empty proto.InternalMessageInfo
 
+type ReviewReq struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name"`
+	Review               int64    `protobuf:"varint,2,opt,name=review,proto3" json:"review"`
+	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description"`
+	PostId               int64    `protobuf:"varint,4,opt,name=post_id,json=postId,proto3" json:"post_id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ReviewReq) Reset()         { *m = ReviewReq{} }
+func (m *ReviewReq) String() string { return proto.CompactTextString(m) }
+func (*ReviewReq) ProtoMessage()    {}
+func (*ReviewReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_63b26697b52db059, []int{1}
+}
+func (m *ReviewReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ReviewReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ReviewReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ReviewReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReviewReq.Merge(m, src)
+}
+func (m *ReviewReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *ReviewReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReviewReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReviewReq proto.InternalMessageInfo
+
+func (m *ReviewReq) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *ReviewReq) GetReview() int64 {
+	if m != nil {
+		return m.Review
+	}
+	return 0
+}
+
+func (m *ReviewReq) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *ReviewReq) GetPostId() int64 {
+	if m != nil {
+		return m.PostId
+	}
+	return 0
+}
+
 type GetReviewReq struct {
 	Id                   int64    `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -76,7 +147,7 @@ func (m *GetReviewReq) Reset()         { *m = GetReviewReq{} }
 func (m *GetReviewReq) String() string { return proto.CompactTextString(m) }
 func (*GetReviewReq) ProtoMessage()    {}
 func (*GetReviewReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_63b26697b52db059, []int{1}
+	return fileDescriptor_63b26697b52db059, []int{2}
 }
 func (m *GetReviewReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -123,7 +194,7 @@ func (m *GetReviewPost) Reset()         { *m = GetReviewPost{} }
 func (m *GetReviewPost) String() string { return proto.CompactTextString(m) }
 func (*GetReviewPost) ProtoMessage()    {}
 func (*GetReviewPost) Descriptor() ([]byte, []int) {
-	return fileDescriptor_63b26697b52db059, []int{2}
+	return fileDescriptor_63b26697b52db059, []int{3}
 }
 func (m *GetReviewPost) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -170,7 +241,7 @@ func (m *Reviews) Reset()         { *m = Reviews{} }
 func (m *Reviews) String() string { return proto.CompactTextString(m) }
 func (*Reviews) ProtoMessage()    {}
 func (*Reviews) Descriptor() ([]byte, []int) {
-	return fileDescriptor_63b26697b52db059, []int{3}
+	return fileDescriptor_63b26697b52db059, []int{4}
 }
 func (m *Reviews) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -221,7 +292,7 @@ func (m *Review) Reset()         { *m = Review{} }
 func (m *Review) String() string { return proto.CompactTextString(m) }
 func (*Review) ProtoMessage()    {}
 func (*Review) Descriptor() ([]byte, []int) {
-	return fileDescriptor_63b26697b52db059, []int{4}
+	return fileDescriptor_63b26697b52db059, []int{5}
 }
 func (m *Review) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -296,7 +367,7 @@ func (m *Id) Reset()         { *m = Id{} }
 func (m *Id) String() string { return proto.CompactTextString(m) }
 func (*Id) ProtoMessage()    {}
 func (*Id) Descriptor() ([]byte, []int) {
-	return fileDescriptor_63b26697b52db059, []int{5}
+	return fileDescriptor_63b26697b52db059, []int{6}
 }
 func (m *Id) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -334,6 +405,7 @@ func (m *Id) GetId() int64 {
 
 func init() {
 	proto.RegisterType((*Empty)(nil), "review.Empty")
+	proto.RegisterType((*ReviewReq)(nil), "review.ReviewReq")
 	proto.RegisterType((*GetReviewReq)(nil), "review.GetReviewReq")
 	proto.RegisterType((*GetReviewPost)(nil), "review.GetReviewPost")
 	proto.RegisterType((*Reviews)(nil), "review.Reviews")
@@ -344,28 +416,29 @@ func init() {
 func init() { proto.RegisterFile("review/review.proto", fileDescriptor_63b26697b52db059) }
 
 var fileDescriptor_63b26697b52db059 = []byte{
-	// 321 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x52, 0xbb, 0x4e, 0xc3, 0x40,
-	0x10, 0xe4, 0x9c, 0xc4, 0x56, 0x36, 0x4e, 0x40, 0x4b, 0x00, 0x2b, 0x85, 0x65, 0xb9, 0x32, 0x8d,
-	0x11, 0x49, 0x41, 0xcf, 0x43, 0x28, 0x1d, 0x32, 0xa2, 0x46, 0x21, 0xb7, 0xc5, 0x49, 0x24, 0x36,
-	0xbe, 0x53, 0x10, 0x15, 0x1d, 0xdf, 0xc0, 0x27, 0x51, 0xf2, 0x09, 0x28, 0xfc, 0x08, 0xca, 0x9d,
-	0x6d, 0xc5, 0x4e, 0x43, 0xe5, 0x9d, 0x9d, 0x59, 0xcd, 0x78, 0xf7, 0xe0, 0x30, 0xa7, 0x95, 0xa0,
-	0xd7, 0x33, 0xf3, 0x89, 0xb3, 0x3c, 0x55, 0x29, 0xda, 0x06, 0x85, 0x0e, 0x74, 0x6e, 0x16, 0x99,
-	0x7a, 0x0b, 0x7d, 0x70, 0x6f, 0x49, 0x25, 0xba, 0x9b, 0xd0, 0x0b, 0x0e, 0xc0, 0x12, 0xdc, 0x63,
-	0x01, 0x8b, 0x5a, 0x89, 0x25, 0x78, 0x18, 0x41, 0xbf, 0xe2, 0xef, 0x52, 0xa9, 0xf0, 0x04, 0x9c,
-	0x2c, 0x95, 0xea, 0xb1, 0x52, 0xd9, 0x1b, 0x38, 0xe5, 0xe1, 0x04, 0x1c, 0x23, 0x93, 0x18, 0x81,
-	0x63, 0x7c, 0xa4, 0xc7, 0x82, 0x56, 0xd4, 0x1b, 0x0f, 0xe2, 0x22, 0x45, 0x61, 0x54, 0xd2, 0xe1,
-	0x3b, 0xd8, 0xa6, 0xd5, 0x34, 0x46, 0x84, 0xf6, 0x72, 0xb6, 0x20, 0xcf, 0x0a, 0x58, 0xd4, 0x4d,
-	0x74, 0x8d, 0xc7, 0x50, 0xe4, 0xf7, 0x5a, 0xc6, 0xda, 0x20, 0x0c, 0xa0, 0xc7, 0x49, 0xce, 0x73,
-	0x91, 0x29, 0x91, 0x2e, 0xbd, 0xb6, 0x1e, 0xd9, 0x6e, 0x6d, 0xa7, 0xee, 0xd4, 0x52, 0x0f, 0xc1,
-	0x9a, 0xf2, 0xa6, 0xf9, 0xf8, 0xc3, 0x82, 0xbe, 0xc9, 0x75, 0x4f, 0xf9, 0x4a, 0xcc, 0x09, 0x63,
-	0x70, 0xaf, 0x72, 0x9a, 0x29, 0x2a, 0xe3, 0xd6, 0xff, 0x68, 0xd4, 0xc0, 0x78, 0x0e, 0xdd, 0x6a,
-	0x6f, 0x38, 0x2c, 0xc9, 0xed, 0x55, 0xef, 0x8c, 0xc4, 0xe0, 0x3e, 0x64, 0xfc, 0xff, 0x16, 0xa7,
-	0xe0, 0x5e, 0xd3, 0x33, 0x55, 0x7a, 0x28, 0xf9, 0x29, 0x1f, 0xf5, 0xcb, 0x5a, 0x5f, 0x19, 0x2f,
-	0xf4, 0x15, 0x37, 0xf7, 0x2b, 0xb4, 0x47, 0x3b, 0x89, 0x36, 0xe4, 0x68, 0xbf, 0x6e, 0x21, 0x2f,
-	0x0f, 0xbe, 0xd6, 0x3e, 0xfb, 0x5e, 0xfb, 0xec, 0x67, 0xed, 0xb3, 0xcf, 0x5f, 0x7f, 0xef, 0xc9,
-	0xd6, 0x0f, 0x69, 0xf2, 0x17, 0x00, 0x00, 0xff, 0xff, 0x19, 0xa8, 0xe1, 0x32, 0x5f, 0x02, 0x00,
-	0x00,
+	// 350 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x52, 0xbd, 0x4e, 0xf3, 0x30,
+	0x14, 0xfd, 0x9c, 0xb4, 0x8d, 0x7a, 0x9b, 0xf6, 0x03, 0x53, 0x20, 0xea, 0x10, 0x45, 0x99, 0xc2,
+	0x52, 0xd4, 0x76, 0x60, 0xe7, 0x47, 0xa8, 0x1b, 0x0a, 0x62, 0x46, 0xa5, 0xbe, 0x83, 0x25, 0xda,
+	0xa4, 0xb1, 0x55, 0xc4, 0xc4, 0xcc, 0x1b, 0xf0, 0x48, 0x8c, 0x3c, 0x02, 0x2a, 0x2f, 0x82, 0x6a,
+	0x3b, 0x69, 0x9b, 0xa0, 0x4e, 0xf6, 0xbd, 0xe7, 0x1e, 0x9f, 0x73, 0x6c, 0xc3, 0x51, 0x86, 0x4b,
+	0x8e, 0x2f, 0xe7, 0x7a, 0xe9, 0xa7, 0x59, 0x22, 0x13, 0xda, 0xd0, 0x55, 0xe8, 0x40, 0xfd, 0x66,
+	0x96, 0xca, 0xd7, 0x30, 0x83, 0x66, 0xac, 0x5a, 0x31, 0x2e, 0x28, 0x85, 0xda, 0x7c, 0x32, 0x43,
+	0x8f, 0x04, 0x24, 0x6a, 0xc6, 0x6a, 0x4f, 0x4f, 0xc0, 0x70, 0x3c, 0x2b, 0x20, 0x91, 0x1d, 0x9b,
+	0x8a, 0x06, 0xd0, 0x62, 0x28, 0xa6, 0x19, 0x4f, 0x25, 0x4f, 0xe6, 0x9e, 0xad, 0x28, 0xdb, 0x2d,
+	0x7a, 0x0a, 0x4e, 0x9a, 0x08, 0xf9, 0xc8, 0x99, 0x57, 0xd3, 0xd4, 0x75, 0x39, 0x66, 0xa1, 0x0f,
+	0xee, 0x2d, 0xca, 0x8d, 0x6c, 0x07, 0x2c, 0xce, 0x94, 0xa8, 0x1d, 0x5b, 0x9c, 0x85, 0x11, 0xb4,
+	0x0b, 0xfc, 0x2e, 0x11, 0x72, 0xfb, 0x24, 0xb2, 0x73, 0xd2, 0x08, 0x1c, 0x3d, 0x26, 0x68, 0x04,
+	0x8e, 0x76, 0x26, 0x3c, 0x12, 0xd8, 0x51, 0x6b, 0xd8, 0xe9, 0x9b, 0xe4, 0x46, 0x28, 0x87, 0xc3,
+	0x37, 0x68, 0xe8, 0x56, 0x59, 0xb8, 0xc8, 0x6f, 0xfd, 0x99, 0xdf, 0xde, 0x97, 0xbf, 0xb6, 0x37,
+	0x7f, 0x7d, 0xc7, 0x75, 0x17, 0xac, 0x31, 0x2b, 0x8b, 0x0f, 0xdf, 0x2d, 0x68, 0x6b, 0x5f, 0xf7,
+	0x98, 0x2d, 0xf9, 0x14, 0xe9, 0x00, 0xdc, 0xab, 0x0c, 0x27, 0x12, 0x8d, 0xdd, 0xc3, 0x52, 0x22,
+	0x5c, 0xf4, 0x4a, 0x21, 0xe9, 0x00, 0x9a, 0xc5, 0xd5, 0xd1, 0x6e, 0x0e, 0x6e, 0xdf, 0x76, 0x85,
+	0xd2, 0x07, 0xf7, 0x21, 0x65, 0x1b, 0x95, 0x12, 0x5e, 0x99, 0x3f, 0x03, 0xf7, 0x1a, 0x9f, 0xb1,
+	0x98, 0x87, 0x1c, 0x1f, 0xb3, 0x5e, 0x3b, 0xdf, 0xab, 0xcf, 0x45, 0x2f, 0xd4, 0x43, 0xae, 0x9f,
+	0xd0, 0xcc, 0x1e, 0x57, 0x1c, 0xad, 0xc1, 0xde, 0xff, 0x5d, 0x09, 0x71, 0x79, 0xf0, 0xb9, 0xf2,
+	0xc9, 0xd7, 0xca, 0x27, 0xdf, 0x2b, 0x9f, 0x7c, 0xfc, 0xf8, 0xff, 0x9e, 0x1a, 0xea, 0xff, 0x8e,
+	0x7e, 0x03, 0x00, 0x00, 0xff, 0xff, 0x1b, 0x1b, 0xcf, 0x15, 0xd6, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -380,7 +453,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ReviewServiceClient interface {
-	CreateReview(ctx context.Context, in *Review, opts ...grpc.CallOption) (*Review, error)
+	CreateReview(ctx context.Context, in *ReviewReq, opts ...grpc.CallOption) (*Review, error)
 	GetReview(ctx context.Context, in *GetReviewReq, opts ...grpc.CallOption) (*Review, error)
 	UpdateReview(ctx context.Context, in *Review, opts ...grpc.CallOption) (*Review, error)
 	DeleteReview(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Empty, error)
@@ -395,7 +468,7 @@ func NewReviewServiceClient(cc *grpc.ClientConn) ReviewServiceClient {
 	return &reviewServiceClient{cc}
 }
 
-func (c *reviewServiceClient) CreateReview(ctx context.Context, in *Review, opts ...grpc.CallOption) (*Review, error) {
+func (c *reviewServiceClient) CreateReview(ctx context.Context, in *ReviewReq, opts ...grpc.CallOption) (*Review, error) {
 	out := new(Review)
 	err := c.cc.Invoke(ctx, "/review.ReviewService/CreateReview", in, out, opts...)
 	if err != nil {
@@ -442,7 +515,7 @@ func (c *reviewServiceClient) GetPostReview(ctx context.Context, in *GetReviewPo
 
 // ReviewServiceServer is the server API for ReviewService service.
 type ReviewServiceServer interface {
-	CreateReview(context.Context, *Review) (*Review, error)
+	CreateReview(context.Context, *ReviewReq) (*Review, error)
 	GetReview(context.Context, *GetReviewReq) (*Review, error)
 	UpdateReview(context.Context, *Review) (*Review, error)
 	DeleteReview(context.Context, *Id) (*Empty, error)
@@ -453,7 +526,7 @@ type ReviewServiceServer interface {
 type UnimplementedReviewServiceServer struct {
 }
 
-func (*UnimplementedReviewServiceServer) CreateReview(ctx context.Context, req *Review) (*Review, error) {
+func (*UnimplementedReviewServiceServer) CreateReview(ctx context.Context, req *ReviewReq) (*Review, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateReview not implemented")
 }
 func (*UnimplementedReviewServiceServer) GetReview(ctx context.Context, req *GetReviewReq) (*Review, error) {
@@ -474,7 +547,7 @@ func RegisterReviewServiceServer(s *grpc.Server, srv ReviewServiceServer) {
 }
 
 func _ReviewService_CreateReview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Review)
+	in := new(ReviewReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -486,7 +559,7 @@ func _ReviewService_CreateReview_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: "/review.ReviewService/CreateReview",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReviewServiceServer).CreateReview(ctx, req.(*Review))
+		return srv.(ReviewServiceServer).CreateReview(ctx, req.(*ReviewReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -615,6 +688,57 @@ func (m *Empty) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	if m.XXX_unrecognized != nil {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ReviewReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ReviewReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ReviewReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.PostId != 0 {
+		i = encodeVarintReview(dAtA, i, uint64(m.PostId))
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.Description) > 0 {
+		i -= len(m.Description)
+		copy(dAtA[i:], m.Description)
+		i = encodeVarintReview(dAtA, i, uint64(len(m.Description)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if m.Review != 0 {
+		i = encodeVarintReview(dAtA, i, uint64(m.Review))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintReview(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -835,6 +959,32 @@ func (m *Empty) Size() (n int) {
 	return n
 }
 
+func (m *ReviewReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovReview(uint64(l))
+	}
+	if m.Review != 0 {
+		n += 1 + sovReview(uint64(m.Review))
+	}
+	l = len(m.Description)
+	if l > 0 {
+		n += 1 + l + sovReview(uint64(l))
+	}
+	if m.PostId != 0 {
+		n += 1 + sovReview(uint64(m.PostId))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *GetReviewReq) Size() (n int) {
 	if m == nil {
 		return 0
@@ -962,6 +1112,159 @@ func (m *Empty) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: Empty: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipReview(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthReview
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ReviewReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowReview
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ReviewReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ReviewReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowReview
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthReview
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthReview
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Review", wireType)
+			}
+			m.Review = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowReview
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Review |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowReview
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthReview
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthReview
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Description = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PostId", wireType)
+			}
+			m.PostId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowReview
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.PostId |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipReview(dAtA[iNdEx:])

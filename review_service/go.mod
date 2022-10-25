@@ -1,4 +1,4 @@
-module github.com/exam/review_service
+module github.com/Exam/review_service
 
 go 1.19
 

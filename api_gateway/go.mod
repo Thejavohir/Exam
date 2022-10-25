@@ -1,4 +1,4 @@
-module github.com/exam/api_gateway
+module github.com/Exam/api_gateway
 
 go 1.19
 

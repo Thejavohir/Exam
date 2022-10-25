@@ -18,8 +18,8 @@ type GrpcClientI interface {
 
 // GrpcClient ...
 type GrpcClient struct {
-	cfg         config.Config
-	postService pb.PostServiceClient
+	cfg           config.Config
+	postService   pb.PostServiceClient
 	reviewService pbp.ReviewServiceClient
 }
 
@@ -40,8 +40,8 @@ func New(cfg config.Config) (*GrpcClient, error) {
 	}
 
 	return &GrpcClient{
-		cfg:         cfg,
-		postService: pb.NewPostServiceClient(conPost),
+		cfg:           cfg,
+		postService:   pb.NewPostServiceClient(conPost),
 		reviewService: pbp.NewReviewServiceClient(conReview),
 	}, nil
 }

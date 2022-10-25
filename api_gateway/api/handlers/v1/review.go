@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Exam/api_gateway/api/handlers/models"
+	"github.com/Exam/api_gateway/genproto/review"
 	pbp "github.com/Exam/api_gateway/genproto/review"
 	l "github.com/Exam/api_gateway/pkg/logger"
 	"github.com/gin-gonic/gin"
@@ -25,7 +25,7 @@ import (
 // @Router /v1/review [post]
 func (h *handlerV1) CreateReview(c *gin.Context) {
 	var (
-		reviewBody  models.Review
+		reviewBody  review.Review
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -42,12 +42,7 @@ func (h *handlerV1) CreateReview(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.ReviewService().CreateReview(ctx, &pbp.Review{
-		Name:        reviewBody.Name,
-		Review:      int64(reviewBody.Review),
-		Description: reviewBody.Description,
-		PostId:      int64(reviewBody.PostId),
-	})
+	response, err := h.serviceManager.ReviewService().CreateReview(ctx, &reviewBody)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -110,7 +105,7 @@ func (h *handlerV1) GetReview(c *gin.Context) {
 // @Router /v1/reviews [put]
 func (h *handlerV1) UpdateReview(c *gin.Context) {
 	var (
-		reviewBody  models.Review
+		reviewBody  review.Review
 		jspbMarshal protojson.MarshalOptions
 	)
 	jspbMarshal.UseEnumNumbers = true
@@ -126,12 +121,7 @@ func (h *handlerV1) UpdateReview(c *gin.Context) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
-	response, err := h.serviceManager.ReviewService().CreateReview(ctx, &pbp.Review{
-		Name:        reviewBody.Name,
-		Review:      int64(reviewBody.Review),
-		Description: reviewBody.Description,
-		PostId:      int64(reviewBody.PostId),
-	})
+	response, err := h.serviceManager.ReviewService().CreateReview(ctx, &reviewBody)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

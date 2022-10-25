@@ -1,4 +1,4 @@
-module github.com/exam/customer_service
+module github.com/Exam/customer_service
 
 go 1.19
 

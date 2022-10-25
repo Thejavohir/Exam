@@ -1,4 +1,4 @@
-module github.com/exam/post_service
+module github.com/Exam/post_service
 
 go 1.19
 
