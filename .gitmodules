@@ -1,0 +1,9 @@
+[submodule "review_service/protos"]
+	path = review_service/protos
+	url = git@github.com:Thejavohir/protos.git
+[submodule "post_service/protos"]
+	path = post_service/protos
+	url = git@github.com:Thejavohir/protos.git
+[submodule "api_gateway/protos"]
+	path = api_gateway/protos
+	url = git@github.com:Thejavohir/protos.git
