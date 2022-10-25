@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package customer;
+
+service CustomerService {
+    rpc CreateCust(CustomerReq) returns (CustomerResp);
+    rpc GetCustById(GetCustByIdReq) returns (GetCustomerResp);
+    rpc UpdateCust(Customer) returns (Customer);
+    rpc ListCusts(Empty) returns (ListCustsResp);
+    rpc DeleteCust(Id) returns (Empty);
+}
+
+message Empty {}
+
+message CustomerReq {
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated AddressReq adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+}
+
+message CustomerResp {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated Address adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+}
+
+message AddressReq {
+    string street = 1;
+}
+
+message Id {
+    int64 id = 1;
+}
+
+message ListCustsResp {
+    repeated Customer customers = 1;
+}
+
+message Customer {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated Address adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+}
+
+message GetCustomerResp {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated Address adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+    repeated Post posts = 8;
+    repeated Review reviews = 9;
+}
+
+message Post {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    repeated Media medias = 4;
+    string customer_id = 5;
+}
+
+message Media {
+    int64 id = 1;
+    string name = 2;
+    int64 post_id = 3;
+}
+
+message Review {
+    int64 id = 1;
+    string name = 2;
+    int64 review = 3;
+    string description = 4;
+    int64 post_id = 5;
+}
+
+message GetCustByIdReq {
+    int64 id = 1;
+}
+
+message Address {
+    int64 id = 1;
+    string street = 2;
+    int64 customer_id = 3;
+}

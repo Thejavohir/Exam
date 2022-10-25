@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package review;
+
+service ReviewService {
+    rpc CreateReview(Review) returns (Review);
+    rpc GetReview(GetReviewReq) returns (Review);
+    rpc UpdateReview(Review) returns (Review);
+    rpc DeleteReview(Id) returns (Empty);
+
+    rpc GetPostReview(GetReviewPost) returns (Reviews);
+}
+
+message Empty {}
+
+message GetReviewReq {
+    int64 id = 1;
+}
+
+message GetReviewPost {
+    int64 post_id = 1;
+}
+message Reviews {
+    repeated Review reviews = 1;
+}
+
+message Review {
+    int64 id = 1;
+    string name = 2;
+    int64 review = 3;
+    string description = 4;
+    int64 post_id = 5;
+}
+
+message Id {
+    int64 id = 1;
+}

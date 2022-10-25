@@ -1,0 +1,519 @@
+definitions:
+  customer.Address:
+    properties:
+      customer_id:
+        type: integer
+      id:
+        type: integer
+      street:
+        type: string
+    type: object
+  customer.AddressReq:
+    properties:
+      street:
+        type: string
+    type: object
+  customer.Customer:
+    properties:
+      adresses:
+        items:
+          $ref: '#/definitions/customer.Address'
+        type: array
+      bio:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  customer.CustomerReq:
+    properties:
+      adresses:
+        items:
+          $ref: '#/definitions/customer.AddressReq'
+        type: array
+      bio:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  customer.CustomerResp:
+    properties:
+      adresses:
+        items:
+          $ref: '#/definitions/customer.Address'
+        type: array
+      bio:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      phone_number:
+        type: string
+    type: object
+  customer.ListCustsResp:
+    properties:
+      customers:
+        items:
+          $ref: '#/definitions/customer.Customer'
+        type: array
+    type: object
+  post.GetPostResp:
+    properties:
+      customer_id:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      medias:
+        items:
+          $ref: '#/definitions/post.Media'
+        type: array
+      name:
+        type: string
+    type: object
+  post.ListPostsResp:
+    properties:
+      posts:
+        items:
+          $ref: '#/definitions/post.Post'
+        type: array
+    type: object
+  post.Media:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      post_id:
+        type: integer
+    type: object
+  post.MediaReq:
+    properties:
+      name:
+        type: string
+    type: object
+  post.Post:
+    properties:
+      customer_id:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      medias:
+        items:
+          $ref: '#/definitions/post.Media'
+        type: array
+      name:
+        type: string
+    type: object
+  post.PostReq:
+    properties:
+      customer_id:
+        type: integer
+      description:
+        type: string
+      medias:
+        items:
+          $ref: '#/definitions/post.MediaReq'
+        type: array
+      name:
+        type: string
+    type: object
+  post.PostResp:
+    properties:
+      customer_id:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      medias:
+        items:
+          $ref: '#/definitions/post.Media'
+        type: array
+      name:
+        type: string
+      reviews:
+        items:
+          $ref: '#/definitions/post.Review'
+        type: array
+    type: object
+  post.Review:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      post_id:
+        type: integer
+      review:
+        type: integer
+    type: object
+  review.Review:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      post_id:
+        type: integer
+      review:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/customer:
+    post:
+      consumes:
+      - application/json
+      description: creating customers
+      parameters:
+      - description: Customer
+        in: body
+        name: customer
+        required: true
+        schema:
+          $ref: '#/definitions/customer.CustomerReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/customer.CustomerResp'
+        "400":
+          description: ErrorResponse
+      summary: creation of customers
+      tags:
+      - Customer
+  /v1/customer/{id}:
+    get:
+      consumes:
+      - application/json
+      description: getting customer info
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/customer.Customer'
+        "400":
+          description: ErrorResponse
+      summary: gets the customer info
+      tags:
+      - Customer
+  /v1/customer/allcustomers:
+    get:
+      consumes:
+      - application/json
+      description: getting all customers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/customer.ListCustsResp'
+      summary: get all customers
+      tags:
+      - Customer
+  /v1/customer/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: deleting of customer
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+        "400":
+          description: ErrorResponse
+      summary: deletes customer
+      tags:
+      - Customer
+  /v1/customer/update:
+    put:
+      consumes:
+      - application/json
+      description: updating customers
+      parameters:
+      - description: Customer
+        in: body
+        name: customer
+        required: true
+        schema:
+          $ref: '#/definitions/customer.Customer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/customer.Customer'
+        "400":
+          description: ErrorResponse
+      summary: updates customers
+      tags:
+      - Customer
+  /v1/post:
+    post:
+      consumes:
+      - application/json
+      description: creating posts
+      parameters:
+      - description: post
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/post.PostReq'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/post.PostResp'
+        "400":
+          description: ErrorResponse
+      summary: creation of posts
+      tags:
+      - Post
+  /v1/post/{id}:
+    get:
+      consumes:
+      - application/json
+      description: getting post info
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/post.GetPostResp'
+        "400":
+          description: ErrorResponse
+      summary: gets the post info
+      tags:
+      - Post
+  /v1/post/allposts:
+    get:
+      consumes:
+      - application/json
+      description: getting all posts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.ListPostsResp'
+      summary: gets all posts
+      tags:
+      - Post
+  /v1/posts:
+    put:
+      consumes:
+      - application/json
+      description: updating posts
+      parameters:
+      - description: Update Post
+        in: body
+        name: postbody
+        required: true
+        schema:
+          $ref: '#/definitions/post.Post'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/post.Post'
+        "400":
+          description: ErrorResponse
+      summary: updates posts
+      tags:
+      - Post
+  /v1/posts/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: deleting of post
+      parameters:
+      - description: delete Post
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+        "400":
+          description: ErrorResponse
+      summary: deletes post
+      tags:
+      - Post
+  /v1/review:
+    post:
+      consumes:
+      - application/json
+      description: creating reviews
+      parameters:
+      - description: review
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/review.Review'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/review.Review'
+        "400":
+          description: ErrorResponse
+      summary: creation of reviews
+      tags:
+      - Review
+  /v1/review/{id}:
+    get:
+      consumes:
+      - application/json
+      description: getting review info
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/review.Review'
+        "400":
+          description: ErrorResponse
+      summary: gets the review info
+      tags:
+      - Review
+  /v1/review/post/{id}:
+    get:
+      consumes:
+      - application/json
+      description: getting post reviews
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/review.Review'
+        "400":
+          description: ErrorResponse
+      summary: gets the post reviews
+      tags:
+      - Review
+  /v1/reviews:
+    put:
+      consumes:
+      - application/json
+      description: updating reviews
+      parameters:
+      - description: rewiew
+        in: body
+        name: review
+        required: true
+        schema:
+          $ref: '#/definitions/review.Review'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/review.Review'
+        "400":
+          description: ErrorResponse
+      summary: updates reviews
+      tags:
+      - Review
+  /v1/reviews/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: deleting of reviews
+      parameters:
+      - description: delete review
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+        "400":
+          description: ErrorResponse
+      summary: deletes reviews
+      tags:
+      - Review
+swagger: "2.0"
