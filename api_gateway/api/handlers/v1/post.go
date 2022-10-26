@@ -79,7 +79,6 @@ func (h *handlerV1) GetPost(c *gin.Context) {
 		h.log.Error("failed parse string to int", l.Error(err))
 		return
 	}
-
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 

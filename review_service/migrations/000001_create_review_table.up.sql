@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS review(
     id serial primary key,
-    name varchar(20),
+    name varchar(30),
     review int check,
     description text,
     post_id int,
