@@ -22,6 +22,9 @@ type Config struct {
 	ReviewServiceHost string
 	ReviewServicePort int
 
+	RedisHost string
+	RedisPort int
+
 	LogLevel string
 	HTTPPort string
 }
@@ -43,6 +46,10 @@ func Load() Config {
 
 	c.ReviewServiceHost = cast.ToString(getOrReturnDefault("REVIEW_SERVICE_HOST", "localhost"))
 	c.ReviewServicePort = cast.ToInt(getOrReturnDefault("REVIEW_SERVICE_PORT", 2000))
+	
+	c.RedisHost = cast.ToString(getOrReturnDefault("REDIS_HOST", "localhost"))
+	c.RedisPort = cast.ToInt(getOrReturnDefault("REDIS_PORT", 6379))
+
 
 	c.CtxTimeout = cast.ToInt(getOrReturnDefault("CTX_TIMEOUT", 7))
 

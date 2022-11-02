@@ -108,6 +108,46 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/customer/register": {
+            "post": {
+                "description": "registers customer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "registeration customer",
+                "parameters": [
+                    {
+                        "description": "Register customer",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CustomerRegister"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/customer/update": {
             "put": {
                 "description": "updating customers",
@@ -568,6 +608,9 @@ const docTemplate = `{
                 "last_name": {
                     "type": "string"
                 },
+                "password": {
+                    "type": "string"
+                },
                 "phone_number": {
                     "type": "string"
                 }
@@ -585,6 +628,9 @@ const docTemplate = `{
                 "bio": {
                     "type": "string"
                 },
+                "code": {
+                    "type": "string"
+                },
                 "email": {
                     "type": "string"
                 },
@@ -592,6 +638,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "last_name": {
+                    "type": "string"
+                },
+                "password": {
                     "type": "string"
                 },
                 "phone_number": {
@@ -623,6 +672,9 @@ const docTemplate = `{
                 "last_name": {
                     "type": "string"
                 },
+                "password": {
+                    "type": "string"
+                },
                 "phone_number": {
                     "type": "string"
                 }
@@ -637,6 +689,44 @@ const docTemplate = `{
                         "$ref": "#/definitions/customer.Customer"
                     }
                 }
+            }
+        },
+        "models.CustomerRegister": {
+            "type": "object",
+            "properties": {
+                "bio": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "error": {}
             }
         },
         "post.GetPostResp": {

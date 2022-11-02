@@ -9,4 +9,5 @@ type CustomerStorageI interface {
 	UpdateCust(*pb.Customer) (*pb.Customer, error)
 	ListCusts() (*pb.ListCustsResp, error)
 	DeleteCust(*pb.Id) (*pb.Empty, error)
+	CheckField(field, value string) (*pb.CheckFieldResponse, error)  
 }

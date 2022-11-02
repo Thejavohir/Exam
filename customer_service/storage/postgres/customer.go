@@ -24,24 +24,28 @@ func (r *customerRepo) CreateCust(customer *pb.CustomerReq) (*pb.CustomerResp, e
 		last_name, 
 		bio, 
 		email, 
-		phone_number) values($1, $2, $3, $4, $5) returning 
+		phone_number,
+		password) values($1, $2, $3, $4, $5, $6) returning 
 		id, 
 		first_name, 
 		last_name, 
 		bio, 
 		email, 
-		phone_number`,
+		phone_number,
+		password`,
 		customer.FirstName,
 		customer.LastName,
 		customer.Bio,
 		customer.Email,
-		customer.PhoneNumber).Scan(
+		customer.PhoneNumber,
+		customer.Password).Scan(
 		&customerResp.Id,
 		&customerResp.FirstName,
 		&customerResp.LastName,
 		&customerResp.Bio,
 		&customerResp.Email,
 		&customerResp.PhoneNumber,
+		&customer.Password,
 	)
 	if err != nil {
 		return &pb.CustomerResp{}, err
@@ -77,13 +81,15 @@ func (r *customerRepo) GetCustById(id *pb.GetCustByIdReq) (*pb.GetCustomerResp, 
 		last_name, 
 		bio, 
 		email, 
-		phone_number from customer where id=$1 and deleted_at is null`, id.Id).Scan(
+		phone_number,
+		password from customer where id=$1 and deleted_at is null`, id.Id).Scan(
 		&customerResp.Id,
 		&customerResp.FirstName,
 		&customerResp.LastName,
 		&customerResp.Bio,
 		&customerResp.Email,
 		&customerResp.PhoneNumber,
+		&customerResp.Password,
 	)
 	if err != nil {
 		return &pb.GetCustomerResp{}, err
@@ -119,12 +125,14 @@ func (r *customerRepo) UpdateCust(cust *pb.Customer) (*pb.Customer, error) {
 	last_name=$2,
 	bio=$3,
 	email=$4, 
-	phone_number=$5 where id = $6`,
+	phone_number=$5,
+	password=$6 where id = $7`,
 		cust.FirstName,
 		cust.LastName,
 		cust.Bio,
 		cust.Email,
 		cust.PhoneNumber,
+		cust.Password,
 		cust.Id)
 	return cust, err
 }
@@ -136,7 +144,8 @@ func (r *customerRepo) ListCusts() (*pb.ListCustsResp, error) {
 		last_name,
 		bio,
 		email,
-		phone_number from customer`)
+		phone_number,
+		password from customer`)
 
 	if err != nil {
 		return &pb.ListCustsResp{}, err
@@ -171,4 +180,18 @@ func (r *customerRepo) DeleteCust(ids *pb.Id) (*pb.Empty, error) {
 		return &pb.Empty{}, err
 	}
 	return &custResp, nil
+}
+
+
+func (r *customerRepo) CheckField(field, value string) (*pb.CheckFieldResponse, error) {
+	query := fmt.Sprintf("select count(1) from users where %s = $1", field)
+	var exists int
+	err := r.db.QueryRow(query, value).Scan(&exists)
+	if err != nil {
+		return &pb.CheckFieldResponse{}, err
+	}
+	if exists == 0 {
+		return &pb.CheckFieldResponse{Exists: false}, nil
+	}
+	return &pb.CheckFieldResponse{Exists: true}, nil
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/Exam/api_gateway/config"
 	"github.com/Exam/api_gateway/pkg/logger"
 	"github.com/Exam/api_gateway/services"
+	"github.com/Exam/api_gateway/storage/repo"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -16,6 +17,7 @@ type Option struct {
 	Conf           config.Config
 	Logger         logger.Logger
 	ServiceManager services.IServiceManager
+	Redis          repo.NewRepo
 }
 
 // New ...
@@ -29,12 +31,14 @@ func New(option Option) *gin.Engine {
 		Logger:         option.Logger,
 		ServiceManager: option.ServiceManager,
 		Cfg:            option.Conf,
+		Redis:          option.Redis,
 	})
 
 	api := router.Group("/v1")
 
 	// customer apis
 	api.POST("/customer", handlerV1.CreateCust)
+	api.POST("/customer/register", handlerV1.Register)
 	api.GET("/customer/:id", handlerV1.GetCustById)
 	api.PUT("/customer/update", handlerV1.UpdateCust)
 	api.GET("/customer/allcustomers", handlerV1.ListCusts)
@@ -49,7 +53,7 @@ func New(option Option) *gin.Engine {
 
 	// review apis
 	api.POST("/review", handlerV1.CreateReview)
-	api.GET("/review/:id",handlerV1.GetReview)
+	api.GET("/review/:id", handlerV1.GetReview)
 	api.PUT("/reviews", handlerV1.UpdateReview)
 	api.DELETE("/reviews/:id", handlerV1.DeleteReview)
 	api.GET("/review/post/:id", handlerV1.PostReview)

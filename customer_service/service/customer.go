@@ -85,3 +85,14 @@ func (s *CustomerService) DeleteCust(ctx context.Context, req *pb.Id) (*pb.Empty
 	}
 	return customer, nil
 }
+
+func (s *CustomerService) CheckField(ctx context.Context, req *pb.CheckFieldRequest) (*pb.CheckFieldResponse, error) {
+	boolean, err := s.storage.Customer().CheckField(req.Field, req.Value)
+	if err != nil {
+		s.logger.Error("error checkfield user", l.Any("error checking field", err))
+		return &pb.CheckFieldResponse{}, status.Error(codes.Internal, "internal error")
+	}
+	return &pb.CheckFieldResponse{
+		Exists: boolean.Exists,
+	}, nil
+}
