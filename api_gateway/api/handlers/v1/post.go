@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/Exam/api_gateway/api/handlers/models"
-	"github.com/Exam/api_gateway/genproto/post"
 	pbp "github.com/Exam/api_gateway/genproto/post"
 	l "github.com/Exam/api_gateway/pkg/logger"
 	"github.com/gin-gonic/gin"
@@ -26,7 +25,7 @@ import (
 // @Router /v1/post [post]
 func (h *handlerV1) CreatePost(c *gin.Context) {
 	var (
-		postBody    post.PostReq
+		postBody    pbp.PostReq
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -151,7 +150,7 @@ func (h *handlerV1) ListPosts(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.PostService().ListPosts(ctx, &post.Empty{})
+	response, err := h.serviceManager.PostService().ListPosts(ctx, &pbp.Empty{})
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),

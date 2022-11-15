@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Exam/api_gateway/genproto/review"
 	pbp "github.com/Exam/api_gateway/genproto/review"
 	l "github.com/Exam/api_gateway/pkg/logger"
 	"github.com/gin-gonic/gin"
@@ -25,7 +24,7 @@ import (
 // @Router /v1/review [post]
 func (h *handlerV1) CreateReview(c *gin.Context) {
 	var (
-		reviewBody  review.ReviewReq
+		reviewBody  pbp.ReviewReq
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -105,7 +104,7 @@ func (h *handlerV1) GetReview(c *gin.Context) {
 // @Router /v1/reviews [put]
 func (h *handlerV1) UpdateReview(c *gin.Context) {
 	var (
-		reviewBody  review.Review
+		reviewBody  pbp.Review
 		jspbMarshal protojson.MarshalOptions
 	)
 	jspbMarshal.UseEnumNumbers = true

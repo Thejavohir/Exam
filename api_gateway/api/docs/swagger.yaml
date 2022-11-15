@@ -48,11 +48,15 @@ definitions:
         type: string
       first_name:
         type: string
+      id:
+        type: string
       last_name:
         type: string
       password:
         type: string
       phone_number:
+        type: string
+      refresh_token:
         type: string
     type: object
   customer.CustomerResp:
@@ -83,6 +87,35 @@ definitions:
           $ref: '#/definitions/customer.Customer'
         type: array
     type: object
+  customer.LoginResp:
+    properties:
+      accessToken:
+        type: string
+      addresses:
+        items:
+          $ref: '#/definitions/customer.Address'
+        type: array
+      bio:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+      refreshToken:
+        type: string
+      updated_at:
+        type: string
+    type: object
   models.CustomerRegister:
     properties:
       bio:
@@ -107,6 +140,25 @@ definitions:
       description:
         type: string
       error: {}
+    type: object
+  models.VerifyResponse:
+    properties:
+      bio:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      jwt:
+        type: string
+      last_name:
+        type: string
+      phone_number:
+        type: string
+      refresh:
+        type: string
     type: object
   post.GetPostResp:
     properties:
@@ -329,14 +381,8 @@ paths:
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
-          schema:
-            $ref: '#/definitions/models.Error'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.Error'
+        "200":
+          description: success
       summary: registeration customer
       tags:
       - Customer
@@ -362,6 +408,40 @@ paths:
         "400":
           description: ErrorResponse
       summary: updates customers
+      tags:
+      - Customer
+  /v1/login/{email}/{password}:
+    get:
+      consumes:
+      - application/json
+      description: login customer
+      parameters:
+      - description: email
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: password
+        in: path
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/customer.LoginResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Login Customer
       tags:
       - Customer
   /v1/post:
@@ -586,4 +666,30 @@ paths:
       summary: deletes reviews
       tags:
       - Review
+  /v1/verify/{email}/{code}:
+    get:
+      consumes:
+      - application/json
+      description: Verifys customer
+      parameters:
+      - description: email
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.VerifyResponse'
+      summary: Verify customer
+      tags:
+      - Customer
 swagger: "2.0"

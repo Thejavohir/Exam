@@ -39,10 +39,12 @@ func New(option Option) *gin.Engine {
 	// customer apis
 	api.POST("/customer", handlerV1.CreateCust)
 	api.POST("/customer/register", handlerV1.Register)
+	api.GET("/login/:email/:password", handlerV1.Login)
 	api.GET("/customer/:id", handlerV1.GetCustById)
 	api.PUT("/customer/update", handlerV1.UpdateCust)
 	api.GET("/customer/allcustomers", handlerV1.ListCusts)
 	api.DELETE("/customer/delete/:id", handlerV1.DeleteCust)
+	api.GET("/verify/:email/:code", handlerV1.Verify)
 
 	// post apis
 	api.POST("/post", handlerV1.CreatePost)

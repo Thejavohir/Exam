@@ -5,8 +5,8 @@ import (
 	"github.com/Exam/api_gateway/config"
 	"github.com/Exam/api_gateway/pkg/logger"
 	"github.com/Exam/api_gateway/services"
-	"github.com/gomodule/redigo/redis"
 	r "github.com/Exam/api_gateway/storage/redis"
+	"github.com/gomodule/redigo/redis"
 )
 
 func main() {

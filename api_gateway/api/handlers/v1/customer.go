@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Exam/api_gateway/genproto/customer"
 	pbp "github.com/Exam/api_gateway/genproto/customer"
 
 	l "github.com/Exam/api_gateway/pkg/logger"
@@ -26,7 +25,7 @@ import (
 // @Router /v1/customer [post]
 func (h *handlerV1) CreateCust(c *gin.Context) {
 	var (
-		body        customer.CustomerReq
+		body        pbp.CustomerReq
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -107,7 +106,7 @@ func (h *handlerV1) GetCustById(c *gin.Context) {
 // @Router /v1/customer/update [put]
 func (h *handlerV1) UpdateCust(c *gin.Context) {
 	var (
-		customerBody customer.Customer
+		customerBody pbp.Customer
 		jspbMarshal  protojson.MarshalOptions
 	)
 	jspbMarshal.UseEnumNumbers = true
@@ -148,7 +147,7 @@ func (h *handlerV1) ListCusts(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.CustomerService().ListCusts(ctx, &customer.Empty{})
+	response, err := h.serviceManager.CustomerService().ListCusts(ctx, &pbp.Empty{})
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
@@ -178,7 +177,7 @@ func (h *handlerV1) DeleteCust(c *gin.Context) {
 	guid := c.Param("id")
 
 	id, err := strconv.ParseInt(guid, 10, 64)
-	body := &customer.Id{
+	body := &pbp.Id{
 		Id: id,
 	}
 	if err != nil {

@@ -5,8 +5,8 @@ import (
 )
 
 func SendMail(to []string, message []byte) error {
-	from := "javohirabdurahimovcom@gmail.com"
-	password := "ihtizrusjypnultt"
+	from := "jabdurahimov0815@gmail.com"
+	password := "yqxyfopsktrbtngl"
 
 	// smtp server configuration.
 	smtpHost := "smtp.gmail.com"
