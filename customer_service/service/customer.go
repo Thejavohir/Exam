@@ -96,3 +96,12 @@ func (s *CustomerService) CheckField(ctx context.Context, req *pb.CheckFieldRequ
 		Exists: boolean.Exists,
 	}, nil
 }
+
+func (s *CustomerService) Login(ctx context.Context, req *pb.LoginReq) (*pb.LoginResp, error) {
+	customer, err := s.storage.Customer().Login(req)
+	if err != nil {
+		s.logger.Error("Error while getting customer info by email", l.Error(err))
+		return nil, status.Error(codes.InvalidArgument, "Something went wrong")
+	}
+	return customer, nil
+}

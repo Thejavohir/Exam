@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package customer;
+
+service CustomerService {
+    rpc CreateCust(CustomerReq) returns (CustomerResp);
+    rpc GetCustById(GetCustByIdReq) returns (GetCustomerResp);
+    rpc UpdateCust(Customer) returns (Customer);
+    rpc ListCusts(Empty) returns (ListCustsResp);
+    rpc DeleteCust(Id) returns (Empty);
+    rpc CheckField(CheckFieldRequest) returns (CheckFieldResponse);
+    rpc Login(LoginReq) returns (LoginResp);
+}
+
+message LoginReq {
+    string email = 1;
+}
+
+message LoginResp {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    string email = 5;
+    string phone_number = 6;
+    repeated Address addresses = 7;
+    string created_at = 10;
+    string updated_at = 11;
+    string password = 12;
+    string accessToken = 13;
+    string refreshToken = 14;
+}
+
+
+message CheckFieldRequest {
+    string field = 1;
+    string value = 2;
+}
+
+message CheckFieldResponse {
+    bool exists = 1;
+}
+
+message Empty {}
+
+message CustomerReq {
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated AddressReq adresses = 5;
+    string email = 6;
+    string code = 7;
+    string phone_number = 8;
+    string password = 9;
+}
+
+message CustomerResp {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated Address adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+    string password = 8;
+}
+
+message AddressReq {
+    string street = 1;
+}
+
+message Id {
+    int64 id = 1;
+}
+
+message ListCustsResp {
+    repeated Customer customers = 1;
+}
+
+message Customer {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated Address adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+    string password = 8;
+}
+
+message GetCustomerResp {
+    int64 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string bio = 4;
+    repeated Address adresses = 5;
+    string email = 6;
+    string phone_number = 7;
+    string password = 8;
+    repeated Post posts = 9;
+    repeated Review reviews = 10;
+}
+
+message Post {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    repeated Media medias = 4;
+    string customer_id = 5;
+}
+
+message Media {
+    int64 id = 1;
+    string name = 2;
+    int64 post_id = 3;
+}
+
+message Review {
+    int64 id = 1;
+    string name = 2;
+    int64 review = 3;
+    string description = 4;
+    int64 post_id = 5;
+}
+
+message GetCustByIdReq {
+    int64 id = 1;
+}
+
+message Address {
+    int64 id = 1;
+    string street = 2;
+    int64 customer_id = 3;
+}

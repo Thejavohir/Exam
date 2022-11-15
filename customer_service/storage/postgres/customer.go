@@ -114,7 +114,7 @@ func (r *customerRepo) GetCustById(id *pb.GetCustByIdReq) (*pb.GetCustomerResp, 
 		if err != nil {
 			return &pb.GetCustomerResp{}, err
 		}
-		customerResp.Adresses=append(customerResp.Adresses, &address)
+		customerResp.Adresses = append(customerResp.Adresses, &address)
 	}
 	return &customerResp, nil
 }
@@ -182,9 +182,8 @@ func (r *customerRepo) DeleteCust(ids *pb.Id) (*pb.Empty, error) {
 	return &custResp, nil
 }
 
-
 func (r *customerRepo) CheckField(field, value string) (*pb.CheckFieldResponse, error) {
-	query := fmt.Sprintf("select count(1) from users where %s = $1", field)
+	query := fmt.Sprintf("select count(1) from customer where %s = $1", field)
 	var exists int
 	err := r.db.QueryRow(query, value).Scan(&exists)
 	if err != nil {
@@ -194,4 +193,43 @@ func (r *customerRepo) CheckField(field, value string) (*pb.CheckFieldResponse, 
 		return &pb.CheckFieldResponse{Exists: false}, nil
 	}
 	return &pb.CheckFieldResponse{Exists: true}, nil
+}
+
+func (r *customerRepo) Login(req *pb.LoginReq) (*pb.LoginResp, error) {
+	resp := &pb.LoginResp{}
+	err := r.db.QueryRow(`select
+	id,
+	first_name,
+	last_name,
+	bio,
+	password,
+	phone_number from customer where email=$1`, req.Email).Scan(
+		&resp.Id,
+		&resp.FirstName,
+		&resp.LastName,
+		&resp.Bio,
+		&resp.Password,
+		&resp.PhoneNumber,
+		&resp.RefreshToken,
+	)
+	if err != nil {
+		fmt.Println("error while getting user login")
+		return &pb.LoginResp{}, err
+	}
+
+	rows, err := r.db.Query(`SELECT id, customer_id, street FROM address WHERE customer_id=$1`, resp.Id)
+	if err != nil {
+		fmt.Println("error while getting addresses login")
+	}
+	for rows.Next() {
+		address := pb.Address{}
+		err = rows.Scan(&address.Id, &address.CustomerId, &address.Street)
+		if err != nil {
+			fmt.Println("error while scanning address")
+			return &pb.LoginResp{}, err
+		}
+		resp.Addresses = append(resp.Addresses, &address)
+	}
+	return &pb.LoginResp{}, nil
+
 }
