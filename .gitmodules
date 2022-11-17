@@ -1,0 +1,12 @@
+[submodule "customer_service/proto"]
+	path = customer_service/proto
+	url = git@github.com:Thejavohir/proto.git
+[submodule "api_gateway/proto"]
+	path = api_gateway/proto
+	url = git@github.com:Thejavohir/proto.git
+[submodule "post_service/proto"]
+	path = post_service/proto
+	url = git@github.com:Thejavohir/proto.git
+[submodule "review_service/proto"]
+	path = review_service/proto
+	url = git@github.com:Thejavohir/proto.git
