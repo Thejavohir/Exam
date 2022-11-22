@@ -1,1 +1,1 @@
-DROP TABLE IF NOT EXISTS address;
+DROP TABLE IF EXISTS address;

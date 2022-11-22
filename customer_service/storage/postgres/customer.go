@@ -24,28 +24,24 @@ func (r *customerRepo) CreateCust(customer *pb.CustomerReq) (*pb.CustomerResp, e
 		last_name, 
 		bio, 
 		email, 
-		phone_number,
-		password) values($1, $2, $3, $4, $5, $6) returning 
+		phone_number) values($1, $2, $3, $4, $5) returning 
 		id, 
 		first_name, 
 		last_name, 
 		bio, 
 		email, 
-		phone_number,
-		password`,
+		phone_number`,
 		customer.FirstName,
 		customer.LastName,
 		customer.Bio,
 		customer.Email,
-		customer.PhoneNumber,
-		customer.Password).Scan(
+		customer.PhoneNumber).Scan(
 		&customerResp.Id,
 		&customerResp.FirstName,
 		&customerResp.LastName,
 		&customerResp.Bio,
 		&customerResp.Email,
 		&customerResp.PhoneNumber,
-		&customer.Password,
 	)
 	if err != nil {
 		return &pb.CustomerResp{}, err

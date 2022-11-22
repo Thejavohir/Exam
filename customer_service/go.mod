@@ -12,7 +12,6 @@ require (
 )
 
 require (
-	github.com/gogo/protobuf v1.3.2 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/net v0.0.0-20201021035429-f5854403a974 // indirect

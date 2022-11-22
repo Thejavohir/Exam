@@ -18,7 +18,10 @@ update_submodule:
 	git submodule update --remote --merge
 
 migrate_up:
-	migrate -source file: migrations/ -database postgres://postgres:1234@localhost:5432/post up
+	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/post up
 
 migrate_down:
-	migrate -source	file: migrations/ -database postgres://postgres:1234@localhost:5432/post down
+	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/post down
+
+migrate_force:
+	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/post force 1

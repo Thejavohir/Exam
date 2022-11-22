@@ -24,7 +24,10 @@ create_submodule:
 	git submodule add gitpathToProtos
 
 migrate_up:
-	migrate -source file: migrations/ -database postgres://postgres:1234@localhost:5432/review up
+	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/review up
 
 migrate_down:
-	migrate -source	file: migrations/ -database postgres://postgres:1234@localhost:5432/review down
+	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/review down
+
+migrate_force:
+	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/review force 1
