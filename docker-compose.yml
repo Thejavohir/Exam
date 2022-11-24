@@ -4,18 +4,60 @@ services:
   customer_service:
     container_name: customer_service
     build: ./customer_service
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=customer
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_HOST=database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com
+      - POSTGRES_PORT=5432
+      - ENVIRONMENT=develop
+      - LOG_LEVEL=debug
+      - CUSTOMER_SERVICE_HOST=customer
+      - CUSTOMER_SERVICE_PORT=3000
+      - POST_SERVICE_HOST=post
+      - POST_SERVICE_PORT=4000
+      - REVIEW_SERVICE_HOST=review
+      - REVIEW_SERVICE_PORT=2000
     ports:
       - "3000:3000"
 
   post_service:
     container_name: post_service
     build: ./post_service
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=post
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_HOST=database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com
+      - POSTGRES_PORT=5432
+      - ENVIRONMENT=develop
+      - LOG_LEVEL=debug
+      - CUSTOMER_SERVICE_HOST=customer
+      - CUSTOMER_SERVICE_PORT=3000
+      - POST_SERVICE_HOST=post
+      - POST_SERVICE_PORT=4000
+      - REVIEW_SERVICE_HOST=review
+      - REVIEW_SERVICE_PORT=2000
     ports:
       - "4000:4000"
 
   review_service:
     container_name: review_service
     build: ./review_service
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DATABASE=review
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_HOST=database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com
+      - POSTGRES_PORT=5432
+      - ENVIRONMENT=develop
+      - LOG_LEVEL=debug
+      - CUSTOMER_SERVICE_HOST=customer
+      - CUSTOMER_SERVICE_PORT=3000
+      - POST_SERVICE_HOST=post
+      - POST_SERVICE_PORT=4000
+      - REVIEW_SERVICE_HOST=review
+      - REVIEW_SERVICE_PORT=2000
     ports:
       - "2000:2000"
  
@@ -28,6 +70,7 @@ services:
       - "redisdb"
 
   redisdb:
-    image: redis
+    container_name: redis
+    image: redis:latest
     ports:
       - "6379:6379"
