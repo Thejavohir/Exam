@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:1.19.3-alpine
 RUN mkdir review
 COPY . /review
 WORKDIR /review

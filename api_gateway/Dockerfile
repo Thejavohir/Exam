@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:1.19.3-alpine
 RUN mkdir api
 COPY . /api
 WORKDIR /api
