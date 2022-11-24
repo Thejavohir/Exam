@@ -50,7 +50,7 @@ func (s *CustomerService) GetCustById(ctx context.Context, req *pb.GetCustByIdRe
 		return &pb.GetCustomerResp{}, status.Error(codes.Internal, "internal error")
 	}
 	for _, pst := range post.Posts {
-		post.Posts = append(post.Posts, &pbp.Post{
+		customer.Posts = append(customer.Posts, &pb.Post{
 			Id:          pst.Id,
 			Name:        pst.Name,
 			Description: pst.Description,

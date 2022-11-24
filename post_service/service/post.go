@@ -59,7 +59,7 @@ func (s *PostService) GetPost(ctx context.Context, req *pb.GetPostReq) (*pb.GetP
 		return &pb.GetPostResp{}, status.Error(codes.Internal, "internal error")
 	}
 	for _, r := range rev.Reviews {
-		post.Reviews = append(post.Reviews, &pb.Review{
+		rev.Reviews = append(rev.Reviews, &rs.Review{
 			Id:          r.Id,
 			PostId:      r.PostId,
 			Name:        r.Name,

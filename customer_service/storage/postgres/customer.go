@@ -77,15 +77,13 @@ func (r *customerRepo) GetCustById(id *pb.GetCustByIdReq) (*pb.GetCustomerResp, 
 		last_name, 
 		bio, 
 		email, 
-		phone_number,
-		password from customer where id=$1 and deleted_at is null`, id.Id).Scan(
+		phone_number from customer where id=$1 and deleted_at is null`, id.Id).Scan(
 		&customerResp.Id,
 		&customerResp.FirstName,
 		&customerResp.LastName,
 		&customerResp.Bio,
 		&customerResp.Email,
 		&customerResp.PhoneNumber,
-		&customerResp.Password,
 	)
 	if err != nil {
 		return &pb.GetCustomerResp{}, err
@@ -140,8 +138,7 @@ func (r *customerRepo) ListCusts() (*pb.ListCustsResp, error) {
 		last_name,
 		bio,
 		email,
-		phone_number,
-		password from customer`)
+		phone_number from customer`)
 
 	if err != nil {
 		return &pb.ListCustsResp{}, err
