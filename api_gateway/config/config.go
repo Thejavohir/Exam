@@ -39,16 +39,16 @@ func Load() Config {
 	c.LogLevel = cast.ToString(getOrReturnDefault("LOG_LEVEL", "debug"))
 	c.HTTPPort = cast.ToString(getOrReturnDefault("HTTP_PORT", ":9090"))
 
-	c.CustomerServiceHost = cast.ToString(getOrReturnDefault("CUSTOMER_SERVICE_HOST", "localhost"))
+	c.CustomerServiceHost = cast.ToString(getOrReturnDefault("CUSTOMER_SERVICE_HOST", "customer"))
 	c.CustomerServicePort = cast.ToInt(getOrReturnDefault("CUSTOMER_SERVICE_PORT", 3000))
 
-	c.PostServiceHost = cast.ToString(getOrReturnDefault("POST_SERVICE_HOST", "localhost"))
+	c.PostServiceHost = cast.ToString(getOrReturnDefault("POST_SERVICE_HOST", "post"))
 	c.PostServicePort = cast.ToInt(getOrReturnDefault("POST_SERVICE_PORT", 4000))
 
-	c.ReviewServiceHost = cast.ToString(getOrReturnDefault("REVIEW_SERVICE_HOST", "localhost"))
+	c.ReviewServiceHost = cast.ToString(getOrReturnDefault("REVIEW_SERVICE_HOST", "review"))
 	c.ReviewServicePort = cast.ToInt(getOrReturnDefault("REVIEW_SERVICE_PORT", 2000))
 
-	c.RedisHost = cast.ToString(getOrReturnDefault("REDIS_HOST", "localhost"))
+	c.RedisHost = cast.ToString(getOrReturnDefault("REDIS_HOST", "redis"))
 	c.RedisPort = cast.ToInt(getOrReturnDefault("REDIS_PORT", 6379))
 
 	c.SignInKey = cast.ToString(getOrReturnDefault("SIGNINGKEY", "secret"))
