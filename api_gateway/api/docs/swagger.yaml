@@ -383,6 +383,10 @@ paths:
       responses:
         "200":
           description: success
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
       summary: registeration customer
       tags:
       - Customer
@@ -670,7 +674,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: Verifys customer
+      description: Verifies customer
       parameters:
       - description: email
         in: path

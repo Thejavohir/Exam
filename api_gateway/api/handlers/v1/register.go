@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	_ "github.com/Exam/api_gateway/api/docs"
 	"github.com/Exam/api_gateway/api/handlers/models"
 	emailS "github.com/Exam/api_gateway/email"
 	"github.com/Exam/api_gateway/genproto/customer"
@@ -27,6 +28,7 @@ import (
 // @Produce 	json
 // @Param 		body	body  models.CustomerRegister true "Register customer"
 // @Success		200 "success"
+// @Failure 500 {object} models.Error
 // @Router		/v1/customer/register 	[post]
 func (h *handlerV1) Register(c *gin.Context) {
 	newCust := &models.CustomerRegister{}

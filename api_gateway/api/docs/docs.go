@@ -135,6 +135,12 @@ const docTemplate = `{
                 "responses": {
                     "200": {
                         "description": "success"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
                     }
                 }
             }
@@ -604,7 +610,7 @@ const docTemplate = `{
         },
         "/v1/verify/{email}/{code}": {
             "get": {
-                "description": "Verifys customer",
+                "description": "Verifies customer",
                 "consumes": [
                     "application/json"
                 ],
