@@ -26,8 +26,8 @@ create_submodule:
 migrate_up:
 	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/review up
 
-migrate_down:
-	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/review down
+migrate_up:
+	migrate -path migrations/ -database postgres://postgres:Javohir_1@database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com:5432/review up
 
-migrate_force:
-	migrate -path migrations/ -database postgres://postgres:1234@localhost:5432/review force 1
+migrate_down:
+	migrate -path migrations/ -database postgres://postgres:Javohir_1@database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com:5432/review down

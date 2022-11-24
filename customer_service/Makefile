@@ -8,10 +8,10 @@ proto-gen:
 # 	migrate create -ext sql -dir migrations -seq create_tablename_table
 
 migrate_up:
-	migrate -path migrations/ -database postgres://postgres:1234@database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com:5432/customer up
+	migrate -path migrations/ -database postgres://postgres:Javohir_1@database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com:5432/customer up
 
 migrate_down:
-	migrate -path migrations/ -database postgres://postgres:1234@database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com:5432/customer down
+	migrate -path migrations/ -database postgres://postgres:Javohir_1@database-1.cxohj5uqpurt.ap-northeast-1.rds.amazonaws.com:5432/customer down
 
 pull_submodule:
 	git submodule update --init --recursive
