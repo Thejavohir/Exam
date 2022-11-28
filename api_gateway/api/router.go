@@ -6,6 +6,7 @@ import (
 	"github.com/Exam/api_gateway/config"
 	"github.com/Exam/api_gateway/pkg/logger"
 	"github.com/Exam/api_gateway/services"
+	"github.com/gin-contrib/cors"
 	"github.com/Exam/api_gateway/storage/repo"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -20,7 +21,15 @@ type Option struct {
 	Redis          repo.NewRepo
 }
 
-// New ...
+// @title  Exam API
+// @version 1.0
+// @description This is a user service.
+// @termsOfService 2 term exam
+
+// @contact.name Javohir
+// @contact.email jabdurahimov0815@gmail.com
+
+// @host 35.78.188.142:9090
 func New(option Option) *gin.Engine {
 	router := gin.New()
 
@@ -34,6 +43,13 @@ func New(option Option) *gin.Engine {
 		Redis:          option.Redis,
 	})
 
+	corConfig := cors.DefaultConfig()
+	corConfig.AllowAllOrigins = true
+	corConfig.AllowCredentials = true
+	corConfig.AllowHeaders = []string{"*"}
+	corConfig.AllowBrowserExtensions = true
+	corConfig.AllowMethods = []string{"*"}
+	router.Use(cors.New(corConfig))
 	api := router.Group("/v1")
 
 	// customer apis
